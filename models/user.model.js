@@ -60,6 +60,19 @@ const userSchema = new Schema({
 }, {timestamps : true});
 
 
+// Adding Plugins to the schema And Hooks
+
+userSchema.pre("save", async function(next) {
+    
+    if(this.isModified("password")) {
+        this.password = bcrypt.hash(this.password, 10);
+        next();
+    }
+    
+    else {
+        next();
+    }
+});
 
 
 
