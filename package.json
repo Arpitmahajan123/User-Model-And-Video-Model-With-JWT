@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-testing",
+  "version": "1.0.0",
+  "main": "testing.js",
+  "scripts": {
+    "script": "nodemon testing.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0",
+    "node": "^20.19.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10"
+  }
+}
