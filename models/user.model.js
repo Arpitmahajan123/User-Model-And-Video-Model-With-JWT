@@ -2,6 +2,10 @@ import { Schema } from "mongoose";
 import mongoose from mongoose;
 import { type } from "os";
 import { ref } from "process";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
+
 
 const userSchema = new Schema({
 
@@ -47,12 +51,15 @@ const userSchema = new Schema({
         required : true,
     },
 
-
-
+    refreshToken : {
+        type : String,
+    },
 
     
 
-});
+}, {timestamps : true});
+
+
 
 
 
