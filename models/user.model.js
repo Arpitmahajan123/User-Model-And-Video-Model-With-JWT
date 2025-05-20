@@ -60,7 +60,7 @@ const userSchema = new Schema({
 }, {timestamps : true});
 
 
-// Adding Plugins to the schema And Hooks
+// Adding Plugins to the schema And Hooks.
 
 userSchema.pre("save", async function(next) {
     
