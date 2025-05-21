@@ -72,21 +72,54 @@ userSchema.pre("save", async function(next) {
     else {
         next();
     }
+
 });
 
 
+// For Taking Password From The User.
 
+userSchema.methods.isPasswordCorrect = async function(password) {
+    return await bcrypt.compare(password, this.password);
+}
 
+// Method for generating JWT Access Token.
 
+userSchema.methods.generateAccessToken = async function() {
+
+    return jwt.sign({
+        _id : this._id,
+        Username : this.Username,
+        Email : this.Email,
+    },
+
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+        expiresIn : process.env.ACCESS_TOKEN_EXPIRE,
+
+    }
+
+)}
+
+// Method for generating JWT Refresh Token.
+
+userSchema.methods.generateRefreshToken = async function() {
+    return jwt.sign({
+        _id : this._id,
+        Username : this.Username,
+        Email : this.Email,
+    },
+
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+        expiresIn : process.env.REFRESH_TOKEN_EXPIRE,
+
+    }
+
+)}
 
 
 
 export const User = mongoose.model("User", userSchema);
-
-
-
-
-
 
 
 
